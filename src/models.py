@@ -38,10 +38,14 @@ class GenderEnum(enum.Enum):
 class Usuario(Base):
     __tablename__= "usuario"
     id = Column(Integer, primary_key = True)
-    nombre_de_usuario = Column(String(15),nullable = False,unique = True)
-    correo = Column(String(250),nullable = False unique = True  )
+    nombre_de_usuario = Column(String(15),nullable = False , unique = True)
+    correo = Column(String(250),nullable = False , unique = True)
     contrasenia = Column(String(250), nullable = False)
     
+    # RELACIONES PARA LOS ENDPOINTS
+    Personaje = relationship('Usuario_Personaje')
+    Planeta = relationship('Usuario_Planeta')
+
 
 class Planeta(Base):
     __tablename__ = 'planeta'
@@ -67,11 +71,19 @@ class Usuario_Planeta(Base):
     usuario_id = Column(Integer,ForeignKey('usuario.id'))
     planeta_id = Column(Integer, ForeignKey('planeta.id'))
 
+    # RELACIONES PARA LOS ENDPOINTS 
+    usuario = relationship('Usuario')
+    planeta = relationship('Planeta')
+    
 class Usuario_Personaje(Base):
     __tablename__ = 'usuario_personaje'
     id = Column(Integer, primary_key = True)
     usuario_id = Column(Integer, ForeignKey('usuario.id'))
     personaje_id = Column(Integer, ForeignKey('personaje.id'))
+
+    # RELACIONES PARA LOS ENDPOINTS   
+    usuario = relationship('Usuario')
+    personaje = relationship('Personaje')
 
 
 ## Draw from SQLAlchemy base
