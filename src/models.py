@@ -38,9 +38,10 @@ class GenderEnum(enum.Enum):
 class Usuario(Base):
     __tablename__= "usuario"
     id = Column(Integer, primary_key = True)
-    nombre_de_usuario = Column(String(15),nullable = False)
-    correo = Column(String(250),nullable = False)
+    nombre_de_usuario = Column(String(15),nullable = False,unique = True)
+    correo = Column(String(250),nullable = False unique = True  )
     contrasenia = Column(String(250), nullable = False)
+    
 
 class Planeta(Base):
     __tablename__ = 'planeta'
@@ -50,8 +51,6 @@ class Planeta(Base):
     creacion_planeta = Column(String(50),nullable = True)
     poblacion  = Column(Integer, nullable = True)
     
-
-
 class Personaje(Base):
     __tablename__ = 'personaje'
     id = Column(Integer, primary_key = True)
@@ -62,13 +61,13 @@ class Personaje(Base):
     color_piel = Column(String(250), nullable = True)
     color_cabello = Column(String(250), nullable = True)
 
-class Usuario_Planeta():
+class Usuario_Planeta(Base):
     __tablename__ = 'usuarios_planeta'
     id = Column(Integer, primary_key = True)
     usuario_id = Column(Integer,ForeignKey('usuario.id'))
     planeta_id = Column(Integer, ForeignKey('planeta.id'))
 
-class Usuario_Personaje():
+class Usuario_Personaje(Base):
     __tablename__ = 'usuario_personaje'
     id = Column(Integer, primary_key = True)
     usuario_id = Column(Integer, ForeignKey('usuario.id'))
