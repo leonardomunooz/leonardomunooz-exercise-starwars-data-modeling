@@ -8,26 +8,11 @@ from eralchemy2 import render_er
 
 Base = declarative_base()
 
-# class Person(Base):
-#     __tablename__ = 'person'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String(250), nullable=False)
 
-# class Address(Base):
-#     __tablename__ = 'address'
-#     # Here we define columns for the table address.
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     street_name = Column(String(250))
-#     street_number = Column(String(250))
-#     post_code = Column(String(250), nullable=False)
-#     person_id = Column(Integer, ForeignKey('person.id'))
-#     person = relationship(Person)
+# LOGICA  
 
-#     def to_dict(self):
-#         return {}
+# Un usuario puede guardar muchos de sus planetas favoritos mientras un planeta puede ser guardado por muchos usuarios 
+# 
 
 
 class GenderEnum(enum.Enum):
@@ -53,7 +38,7 @@ class Planeta(Base):
     nombre_planeta = Column(String(250), nullable = False)
     clima = Column(String(20), nullable = True) # investigar cuantos tipos de climas hay en el universo star wars
     creacion_planeta = Column(String(50),nullable = True)
-    poblacion  = Column(Integer, nullable = True)
+    poblacion  = Column(Integer, nullable = True )
     
 class Personaje(Base):
     __tablename__ = 'personaje'
